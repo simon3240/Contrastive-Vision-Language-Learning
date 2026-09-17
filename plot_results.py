@@ -13,8 +13,8 @@ top5_acc = [96.2, 93.5, 95.8]
 x = np.arange(len(models))
 width = 0.35
 
-# Plot styling (Set canvas dimensions and resolution)
-fig, ax = plt.subplots(figsize=(10, 6), dpi=300)
+# Plot styling
+fig, ax = plt.subplots(figsize=(9, 5.5), dpi=300)
 rects1 = ax.bar(
     x - width / 2,
     top1_acc,
@@ -31,17 +31,17 @@ rects2 = ax.bar(
 )
 
 # Formatting
-ax.set_ylabel("Accuracy (%)", fontsize=11, fontweight="bold")
+ax.set_ylabel("Accuracy (%)", fontsize=12, fontweight="bold")
 ax.set_title(
     "Food-101 Accuracy: Supervised Baseline vs. Zero-Shot CLIP",
-    fontsize=12,
+    fontsize=14,
     fontweight="bold",
-    pad=20,  
+    pad=15,
 )
 ax.set_xticks(x)
-ax.set_xticklabels(models, fontsize=10)
-ax.set_ylim(60, 102)  # Extend upper Y-axis limit to prevent label collision
-ax.legend(fontsize=10, loc="lower right")
+ax.set_xticklabels(models, fontsize=11)
+ax.set_ylim(60, 100)
+ax.legend(fontsize=11, loc="lower right")
 ax.grid(axis="y", linestyle="--", alpha=0.5)
 
 
@@ -52,11 +52,11 @@ def autolabel(rects):
         ax.annotate(
             f"{height}%",
             xy=(rect.get_x() + rect.get_width() / 2, height),
-            xytext=(0, 4),
+            xytext=(0, 3),
             textcoords="offset points",
             ha="center",
             va="bottom",
-            fontsize=9,
+            fontsize=10,
             fontweight="bold",
         )
 
@@ -64,9 +64,6 @@ def autolabel(rects):
 autolabel(rects1)
 autolabel(rects2)
 
-# Automatically adjust layout and save chart with tight bounding box
 plt.tight_layout()
-plt.savefig(
-    "results_chart.png", bbox_inches="tight"
-)  # Ensures no cropped margins
+plt.savefig("results_chart.png")
 plt.show()
